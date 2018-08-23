@@ -22,4 +22,7 @@ public interface ApiInterface {
     @GET("paychecks/{year}")
     Call<List<PaycheckSummary>> getPaychecks(@Header("Authorization") String authKey, @Path("year") int year);
 
+    @GET("paychecks/summary")
+    Call<List<PaycheckSummary>> getPaychecks(@Header("Authorization") String authKey);
+
 }

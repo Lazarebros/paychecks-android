@@ -34,13 +34,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sessionManager = new SessionManager(getApplicationContext());
+        sessionManager = AppController.getInstance().getSessionManager();
+        db = AppController.getInstance().getSQLiteHandler();
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
-
-        db = AppController.getInstance().getSQLiteHandler();
 
         if (sessionManager.isLoggedIn()) {
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

@@ -22,7 +22,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private static final String TAG = RegistrationActivity.class.getSimpleName();
 
-    private Button btnLinkToLogin;
     private ProgressDialog pDialog;
     private SessionManager sessionManager;
 
@@ -31,8 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        btnLinkToLogin = findViewById(R.id.btnLinkToLoginScreen);
-        sessionManager = new SessionManager(getApplicationContext());
+        sessionManager = AppController.getInstance().getSessionManager();
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);

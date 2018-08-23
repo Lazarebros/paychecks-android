@@ -24,6 +24,7 @@
             android:name=".activity.HomeActivity"
             android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.SummaryActivity"></activity>
     </application>
 
 </manifest>

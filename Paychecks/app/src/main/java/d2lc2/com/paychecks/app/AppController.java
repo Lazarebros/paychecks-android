@@ -3,6 +3,7 @@ package d2lc2.com.paychecks.app;
 import android.app.Application;
 
 import d2lc2.com.paychecks.helper.SQLiteHandler;
+import d2lc2.com.paychecks.helper.SessionManager;
 import d2lc2.com.paychecks.service.ApiClient;
 import d2lc2.com.paychecks.service.ApiInterface;
 
@@ -12,6 +13,7 @@ public class AppController extends Application {
 
     private ApiInterface apiInterface;
     private SQLiteHandler sqLiteHandler;
+    private SessionManager sessionManager;
 
     @Override
     public void onCreate() {
@@ -37,4 +39,10 @@ public class AppController extends Application {
         return sqLiteHandler;
     }
 
+    public SessionManager getSessionManager() {
+        if (sessionManager == null) {
+            sessionManager = new SessionManager(getApplicationContext());
+        }
+        return sessionManager;
+    }
 }

@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        sessionManager = new SessionManager(getApplicationContext());
+        sessionManager = AppController.getInstance().getSessionManager();
         db = AppController.getInstance().getSQLiteHandler();
     }
 
@@ -34,7 +34,9 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    public void gotoSummary(View view) {
-
+    public void gotoSummaryActivity(View view) {
+        // Launching the login activity
+        Intent intent = new Intent(HomeActivity.this, SummaryActivity.class);
+        startActivity(intent);
     }
 }
