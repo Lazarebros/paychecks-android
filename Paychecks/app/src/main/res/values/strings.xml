@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Paychecks</string>
+
+
+    <string name="pref_file">d2l2c.com.paychecks.preference_file</string>
+    <string name="pref_login_status">d2l2c.com.paychecks.preference_login_status</string>
+
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_user_name_email">Enter email</string>
+    <string name="hint_password">Enter password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="hint_registration_code">Enter registration code</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registered! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Full name</string>
 </resources>
