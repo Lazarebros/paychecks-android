@@ -70,8 +70,10 @@ public class PaycheckPagerAdapter extends PagerAdapter {
         ProgressBar progressBar = view.findViewById(R.id.year_progress);
         progressBar.setProgress(paycheckSummaryList.get(position).getYearProgress());
 
+        TextView textViewProgressYear = view.findViewById(R.id.year_progress_text);
+        textViewProgressYear.setText(paycheckSummaryList.get(position).getYearProgress() + "%");
 
-        TextView textViewYear = view.findViewById(R.id.year_progress_text);
+        TextView textViewYear = view.findViewById(R.id.paycheck_year);
         textViewYear.setText("" + paycheckSummaryList.get(position).getYear());
 
         TextView textViewGross = view.findViewById(R.id.gross_amount);

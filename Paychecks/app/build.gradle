@@ -34,5 +34,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
     implementation 'com.d2l2c:paycheck-util:1.0.0-SNAPSHOT'
 }
