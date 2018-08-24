@@ -1,15 +1,19 @@
 package d2lc2.com.paychecks.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.d2l2c.paycheck.util.bean.PaycheckSummary;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import d2lc2.com.paychecks.R;
@@ -23,12 +27,16 @@ public class PaycheckPagerAdapter extends PagerAdapter {
 
     //int[] colors = {R.color.colorAccent, R.color.green, R.color.yellow};
 
-    //int[] layouts = {R.layout.one, R.layout.two, R.layout.three};
-
     public PaycheckPagerAdapter(Context context, List<PaycheckSummary> paycheckSummaryList)
     {
         this.context = context;
         this.paycheckSummaryList = paycheckSummaryList;
+        Collections.sort(this.paycheckSummaryList, new Comparator<PaycheckSummary>() {
+            @Override
+            public int compare(PaycheckSummary o1, PaycheckSummary o2) {
+                return o2.getYear() - o1.getYear();
+            }
+        });
         layoutInflater = LayoutInflater.from(context);
     }
 
@@ -58,7 +66,12 @@ public class PaycheckPagerAdapter extends PagerAdapter {
     }
 
     private void initView(View view, int position) {
-        TextView textViewYear = view.findViewById(R.id.paycheck_year);
+
+        ProgressBar progressBar = view.findViewById(R.id.year_progress);
+        progressBar.setProgress(paycheckSummaryList.get(position).getYearProgress());
+
+
+        TextView textViewYear = view.findViewById(R.id.year_progress_text);
         textViewYear.setText("" + paycheckSummaryList.get(position).getYear());
 
         TextView textViewGross = view.findViewById(R.id.gross_amount);
