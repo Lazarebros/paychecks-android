@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <item>
         <shape
-            android:innerRadiusRatio="2.65"
+            android:innerRadiusRatio="2.75"
             android:shape="ring"
-            android:thicknessRatio="40.0" >
+            android:thicknessRatio="20.0"
+            android:useLevel="true">
             <gradient
                 android:centerX="0.3"
                 android:startColor="@color/md_red_400"

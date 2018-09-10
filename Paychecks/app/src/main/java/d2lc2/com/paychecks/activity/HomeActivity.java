@@ -28,15 +28,19 @@ public class HomeActivity extends AppCompatActivity {
         sessionManager.setLogin(false);
         db.deleteUsers();
 
-        // Launching the login activity
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void gotoSummaryActivity(View view) {
-        // Launching the login activity
         Intent intent = new Intent(HomeActivity.this, SummaryActivity.class);
         startActivity(intent);
     }
+
+    public void addPaycheckActivity(View view) {
+        Intent intent = new Intent(HomeActivity.this, AddPaycheckActivity.class);
+        startActivity(intent);
+    }
+
 }

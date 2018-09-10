@@ -3,6 +3,11 @@
     package="d2lc2.com.paychecks">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:name=".app.AppController"
@@ -13,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="ocr"/>
+        <meta-data android:name="com.google.firebase.ml.vision.DEPENDENCIES" android:value="ocr" />
+
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +33,8 @@
             android:name=".activity.HomeActivity"
             android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.RegistrationActivity" />
-        <activity android:name=".activity.SummaryActivity"></activity>
+        <activity android:name=".activity.SummaryActivity" />
+        <activity android:name=".activity.AddPaycheckActivity" />
     </application>
 
 </manifest>

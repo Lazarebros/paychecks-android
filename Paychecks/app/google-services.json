@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "169264448201",
+    "firebase_url": "https://pchecks-560fc.firebaseio.com",
+    "project_id": "pchecks-560fc",
+    "storage_bucket": "pchecks-560fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169264448201:android:1d4d5c6bac026ad6",
+        "android_client_info": {
+          "package_name": "com.d2lc2.pchecks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169264448201-u46ufo7tbt0ngegtdl7fg12qssquochf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdO6nZjwrO6wh__LFRKrghtYXWxE_YLGY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

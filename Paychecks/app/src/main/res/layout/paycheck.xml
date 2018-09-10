@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp" >
+                android:layout_marginTop="20dp">
 
                 <ProgressBar
                     android:id="@+id/year_progress"
@@ -61,10 +61,11 @@
         </LinearLayout>
 
         <android.support.v7.widget.CardView
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="240dp">
+            android:layout_marginTop="240dp"
+            android:layout_marginLeft="60dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -153,87 +154,164 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="right"
                 android:text="Gross Exp. :"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/startBlue"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Gross Remain. :"
+                android:textSize="@dimen/text_size_12"
                 android:textColor="@color/startBlue"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Gross mean :"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/startBlue"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
             <TextView
                 android:id="@+id/gross_amount_expected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="left"
                 android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_12"
                 android:text="$34567"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Gross Remain :"
-                android:textColor="@color/startBlue"/>
             <TextView
                 android:id="@+id/gross_amount_remain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="left"
                 android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_12"
                 android:text="$367"/>
+            <TextView
+                android:id="@+id/gross_amount_mean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_12"
+                android:text="TBD"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Net Exp. :"
+                android:layout_gravity="right"
+                android:textColor="@color/startBlue"
+                android:textSize="@dimen/text_size_12"
+                android:text="Net Exp. :"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Net Remain. :"
+                android:textSize="@dimen/text_size_12"
                 android:textColor="@color/startBlue"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="Net Mean :"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/startBlue"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
             <TextView
                 android:id="@+id/net_amount_expected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="left"
                 android:paddingLeft="10dp"
-                android:text="$367345"/>
+                android:textSize="@dimen/text_size_12"
+                android:text="$34567"/>
+            <TextView
+                android:id="@+id/net_amount_remain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_12"
+                android:text="$3647"/>
+            <TextView
+                android:id="@+id/net_amount_mean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_12"
+                android:text="$3647"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="400sp"
-        android:layout_height="400sp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_gross_amt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.github.mikephil.charting.charts.LineChart>
 
     </LinearLayout>
 
