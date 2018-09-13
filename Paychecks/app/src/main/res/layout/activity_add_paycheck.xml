@@ -6,34 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddPaycheckActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <RelativeLayout
+    <com.github.barteksc.pdfviewer.PDFView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/pdfPreview"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No Text"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:padding="5dp"/>
+            <Button
+                android:id="@+id/upload_file_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:onClick="uploadFile"
+                android:text="Upload file"
+                />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/scan_text_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_view"
-        android:onClick="getTextFromImage"
-        android:text="Scan"/>
-
-        </RelativeLayout>
-
-    </ScrollView>
-
+    </LinearLayout>
 </RelativeLayout>
 

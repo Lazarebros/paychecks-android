@@ -1,75 +1,92 @@
 package d2lc2.com.paychecks.activity;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.support.annotation.NonNull;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
-import com.google.firebase.ml.vision.text.RecognizedLanguage;
-
-import java.util.List;
+import com.d2l2c.paycheck.util.bean.PaycheckUnit;
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
 import d2lc2.com.paychecks.R;
-import d2lc2.com.paychecks.helper.OcrDetectorProcessor;
+import d2lc2.com.paychecks.app.AppController;
+import d2lc2.com.paychecks.bean.User;
+import d2lc2.com.paychecks.helper.SQLiteHandler;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddPaycheckActivity extends AppCompatActivity {
 
     private static final String TAG = AddPaycheckActivity.class.getSimpleName();
+    private static final int REQUEST_CODE = 43;
 
-    private TextView textView;
+    private SQLiteHandler db;
+    private String authKey;
+    private byte[] fileByte;
+    private Uri fileUri;
+    private PDFView pdfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_paycheck);
 
-        textView = findViewById(R.id.text_view);
+        db = AppController.getInstance().getSQLiteHandler();
+        User user = db.getUserDetails();
+        authKey = getAuthorizationHeader(user.getUserName(), user.getPassword());
 
-        FirebaseApp.initializeApp(getApplicationContext());
+        pdfView = findViewById(R.id.pdfPreview);
 
+        fileByte = getIntent().getByteArrayExtra(HomeActivity.EXTRA_FILE_BYTE);
+        fileUri = (Uri) getIntent().getExtras().get(HomeActivity.EXTRA_FILE_URI);
 
-    }
-
-    public void getTextFromImage(View view) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.pay_ms3_2017_08_15);
-
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
-
-        try {
-            FirebaseVisionTextRecognizer textRecognizer = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-
-            textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                @Override
-                public void onSuccess(FirebaseVisionText result) {
-                    String resultText = result.getText();
-                    Log.i(TAG, "######### " + resultText);
-                    textView.setText(resultText);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
+        pdfView.fromBytes(fileByte)
+                .defaultPage(0)
+                .enableSwipe(true)
+                .swipeHorizontal(false)
+                .enableAnnotationRendering(true)
+                .scrollHandle(new DefaultScrollHandle(this))
+                .load();
 
     }
+
+    public static String getAuthorizationHeader(String userName, String password) {
+        String credential = userName + ":" + password;
+        return "Basic " + Base64.encodeToString(credential.getBytes(), Base64.NO_WRAP);
+    }
+
+    public void uploadFile(View view) {
+        RequestBody filePart = RequestBody.create(
+                MediaType.parse(getContentResolver().getType(fileUri)),
+                fileByte
+        );
+
+        Call<PaycheckUnit> call = AppController.getInstance().getApiInterface().uploadPaycheck(authKey, filePart);
+
+        call.enqueue(new Callback<PaycheckUnit>() {
+            @Override
+            public void onResponse(Call<PaycheckUnit> call, Response<PaycheckUnit> response) {
+                Log.d(TAG, response.toString());
+
+                Intent intent = new Intent(AddPaycheckActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<PaycheckUnit> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_LONG).show();
+                Log.e(TAG, "ERROR " + t.getMessage());
+            }
+        });
+    }
+
 }

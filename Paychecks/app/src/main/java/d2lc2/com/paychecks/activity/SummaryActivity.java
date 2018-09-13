@@ -61,7 +61,7 @@ public class SummaryActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<PaycheckSummary>> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+                Log.e(TAG, t.getMessage());
             }
         });
 
